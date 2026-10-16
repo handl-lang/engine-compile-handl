@@ -42,7 +42,7 @@ checksum = "00d174d5400e5e8fd687ad1049e2f578285fa914201b1af7e8b112a4546bd826"
 [[package]]
 name = "handl-emitters"
 version = "0.1.0"
-source = "git+https://github.com/handl-lang/platform?rev=9d34281cc717e007588e31a0f908ef55c81e7deb#9d34281cc717e007588e31a0f908ef55c81e7deb"
+source = "git+https://github.com/handl-lang/platform?branch=main#dff54bd7751da32f36a5cc39bf76a5fc7e0aedff"
 dependencies = [
  "handl-language",
  "plugin-engine",
@@ -59,11 +59,11 @@ dependencies = [
 [[package]]
 name = "handl-kit-data"
 version = "0.1.0"
-source = "git+https://github.com/handl-lang/platform?rev=9d34281cc717e007588e31a0f908ef55c81e7deb#9d34281cc717e007588e31a0f908ef55c81e7deb"
+source = "git+https://github.com/handl-lang/platform?branch=main#dff54bd7751da32f36a5cc39bf76a5fc7e0aedff"
 dependencies = [
  "handl-emitters",
  "handl-language",
- "handl-platform 0.1.0 (git+https://github.com/handl-lang/platform?rev=9d34281cc717e007588e31a0f908ef55c81e7deb)",
+ "handl-platform 0.1.0 (git+https://github.com/handl-lang/platform?branch=main)",
  "handl-runtime",
  "serde",
  "serde_json",
@@ -77,7 +77,7 @@ dependencies = [
  "handl-kit-data",
  "handl-language",
  "handl-plugin-engine-transform",
- "handl-plugin-ext-diag 0.1.0 (git+https://github.com/handl-lang/platform?rev=9d34281cc717e007588e31a0f908ef55c81e7deb)",
+ "handl-plugin-ext-diag 0.1.0 (git+https://github.com/handl-lang/platform?branch=main)",
  "handl-runtime",
  "serde_yaml",
 ]
@@ -106,7 +106,7 @@ dependencies = [
 [[package]]
 name = "handl-platform"
 version = "0.1.0"
-source = "git+https://github.com/handl-lang/platform?rev=9d34281cc717e007588e31a0f908ef55c81e7deb#9d34281cc717e007588e31a0f908ef55c81e7deb"
+source = "git+https://github.com/handl-lang/platform?branch=main#dff54bd7751da32f36a5cc39bf76a5fc7e0aedff"
 dependencies = [
  "semver",
  "serde",
@@ -144,11 +144,11 @@ dependencies = [
 [[package]]
 name = "handl-plugin-engine-exec"
 version = "0.1.0"
-source = "git+https://github.com/handl-lang/platform?rev=9d34281cc717e007588e31a0f908ef55c81e7deb#9d34281cc717e007588e31a0f908ef55c81e7deb"
+source = "git+https://github.com/handl-lang/platform?branch=main#dff54bd7751da32f36a5cc39bf76a5fc7e0aedff"
 dependencies = [
  "handl-language",
- "handl-platform 0.1.0 (git+https://github.com/handl-lang/platform?rev=9d34281cc717e007588e31a0f908ef55c81e7deb)",
- "handl-value 0.1.0 (git+https://github.com/handl-lang/platform?rev=9d34281cc717e007588e31a0f908ef55c81e7deb)",
+ "handl-platform 0.1.0 (git+https://github.com/handl-lang/platform?branch=main)",
+ "handl-value 0.1.0 (git+https://github.com/handl-lang/platform?branch=main)",
  "rustc-hash",
  "serde_json",
 ]
@@ -164,7 +164,7 @@ dependencies = [
 [[package]]
 name = "handl-plugin-engine-lex"
 version = "0.1.0"
-source = "git+https://github.com/handl-lang/platform?rev=9d34281cc717e007588e31a0f908ef55c81e7deb#9d34281cc717e007588e31a0f908ef55c81e7deb"
+source = "git+https://github.com/handl-lang/platform?branch=main#dff54bd7751da32f36a5cc39bf76a5fc7e0aedff"
 dependencies = [
  "handl-language",
  "serde_json",
@@ -198,17 +198,17 @@ dependencies = [
 [[package]]
 name = "handl-plugin-engine-transform"
 version = "0.1.0"
-source = "git+https://github.com/handl-lang/platform?rev=9d34281cc717e007588e31a0f908ef55c81e7deb#9d34281cc717e007588e31a0f908ef55c81e7deb"
+source = "git+https://github.com/handl-lang/platform?branch=main#dff54bd7751da32f36a5cc39bf76a5fc7e0aedff"
 dependencies = [
  "handl-language",
- "handl-plugin-ext-diag 0.1.0 (git+https://github.com/handl-lang/platform?rev=9d34281cc717e007588e31a0f908ef55c81e7deb)",
+ "handl-plugin-ext-diag 0.1.0 (git+https://github.com/handl-lang/platform?branch=main)",
  "serde_json",
 ]
 
 [[package]]
 name = "handl-plugin-engine-transform-rewrite"
 version = "0.1.0"
-source = "git+https://github.com/handl-lang/platform?rev=9d34281cc717e007588e31a0f908ef55c81e7deb#9d34281cc717e007588e31a0f908ef55c81e7deb"
+source = "git+https://github.com/handl-lang/platform?branch=main#dff54bd7751da32f36a5cc39bf76a5fc7e0aedff"
 dependencies = [
  "handl-language",
  "handl-plugin-engine-transform",
@@ -231,14 +231,14 @@ dependencies = [
 [[package]]
 name = "handl-plugin-engine-typecheck"
 version = "0.1.0"
-source = "git+https://github.com/handl-lang/platform?rev=9d34281cc717e007588e31a0f908ef55c81e7deb#9d34281cc717e007588e31a0f908ef55c81e7deb"
+source = "git+https://github.com/handl-lang/platform?branch=main#dff54bd7751da32f36a5cc39bf76a5fc7e0aedff"
 dependencies = [
  "handl-language",
- "handl-platform 0.1.0 (git+https://github.com/handl-lang/platform?rev=9d34281cc717e007588e31a0f908ef55c81e7deb)",
+ "handl-platform 0.1.0 (git+https://github.com/handl-lang/platform?branch=main)",
  "handl-plugin-engine-lex-pattern",
  "handl-plugin-engine-parse",
  "handl-plugin-engine-parse-pratt",
- "handl-plugin-ext-diag 0.1.0 (git+https://github.com/handl-lang/platform?rev=9d34281cc717e007588e31a0f908ef55c81e7deb)",
+ "handl-plugin-ext-diag 0.1.0 (git+https://github.com/handl-lang/platform?branch=main)",
  "serde_json",
 ]
 
@@ -256,10 +256,10 @@ dependencies = [
 [[package]]
 name = "handl-plugin-ext-diag"
 version = "0.1.0"
-source = "git+https://github.com/handl-lang/platform?rev=9d34281cc717e007588e31a0f908ef55c81e7deb#9d34281cc717e007588e31a0f908ef55c81e7deb"
+source = "git+https://github.com/handl-lang/platform?branch=main#dff54bd7751da32f36a5cc39bf76a5fc7e0aedff"
 dependencies = [
  "handl-language",
- "handl-platform 0.1.0 (git+https://github.com/handl-lang/platform?rev=9d34281cc717e007588e31a0f908ef55c81e7deb)",
+ "handl-platform 0.1.0 (git+https://github.com/handl-lang/platform?branch=main)",
  "serde",
  "serde_json",
  "thiserror",
@@ -268,17 +268,17 @@ dependencies = [
 [[package]]
 name = "handl-runtime"
 version = "0.1.0"
-source = "git+https://github.com/handl-lang/platform?rev=9d34281cc717e007588e31a0f908ef55c81e7deb#9d34281cc717e007588e31a0f908ef55c81e7deb"
+source = "git+https://github.com/handl-lang/platform?branch=main#dff54bd7751da32f36a5cc39bf76a5fc7e0aedff"
 dependencies = [
  "handl-kit-arrow-lower",
  "handl-language",
- "handl-platform 0.1.0 (git+https://github.com/handl-lang/platform?rev=9d34281cc717e007588e31a0f908ef55c81e7deb)",
+ "handl-platform 0.1.0 (git+https://github.com/handl-lang/platform?branch=main)",
  "handl-plugin-engine-exec",
- "handl-plugin-engine-lex 0.1.0 (git+https://github.com/handl-lang/platform?rev=9d34281cc717e007588e31a0f908ef55c81e7deb)",
+ "handl-plugin-engine-lex 0.1.0 (git+https://github.com/handl-lang/platform?branch=main)",
  "handl-plugin-engine-parse",
  "handl-plugin-engine-transform-rewrite",
- "handl-plugin-engine-typecheck 0.1.0 (git+https://github.com/handl-lang/platform?rev=9d34281cc717e007588e31a0f908ef55c81e7deb)",
- "handl-value 0.1.0 (git+https://github.com/handl-lang/platform?rev=9d34281cc717e007588e31a0f908ef55c81e7deb)",
+ "handl-plugin-engine-typecheck 0.1.0 (git+https://github.com/handl-lang/platform?branch=main)",
+ "handl-value 0.1.0 (git+https://github.com/handl-lang/platform?branch=main)",
  "plugin-engine",
  "rustc-hash",
  "serde",
@@ -296,7 +296,7 @@ dependencies = [
 [[package]]
 name = "handl-value"
 version = "0.1.0"
-source = "git+https://github.com/handl-lang/platform?rev=9d34281cc717e007588e31a0f908ef55c81e7deb#9d34281cc717e007588e31a0f908ef55c81e7deb"
+source = "git+https://github.com/handl-lang/platform?branch=main#dff54bd7751da32f36a5cc39bf76a5fc7e0aedff"
 dependencies = [
  "rustc-hash",
  "serde_json",
