@@ -47,8 +47,11 @@ fn lower_file(path: &Path, lang: &Language) -> (Term, String) {
 }
 
 fn playground(name: &str) -> PathBuf {
+    // ADR-0128: `playground/` is its own repo now — the two roundtrip
+    // fixtures are vendored under `tests/fixtures/` so this crate's
+    // suite is self-contained.
     Path::new(env!("CARGO_MANIFEST_DIR"))
-        .join("../../playground")
+        .join("tests/fixtures")
         .join(name)
 }
 
