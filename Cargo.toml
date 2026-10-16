@@ -9,7 +9,7 @@ license = "MIT OR Apache-2.0"
 repository = "https://github.com/handl-lang/handl"
 
 # ADR-0128 §Resolution: [patch] resolves sibling checkouts locally;
-# CI resolves the pinned git revs.
+# CI resolves the `branch = "main"` git deps (pinned to `rev` at release).
 [patch."https://github.com/handl-lang/lang"]
 handl-kit-data-canonical = { path = "../lang/crates/handl-kit-data-canonical" }
 
