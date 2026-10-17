@@ -13,14 +13,15 @@ repository = "https://github.com/handl-lang/handl"
 [patch."https://github.com/handl-lang/lang"]
 handl-kit-data-canonical = { path = "../lang/crates/handl-kit-data-canonical" }
 
+[patch."https://github.com/handl-lang/kernel"]
+handl-language = { path = "../kernel/crates/handl-language" }
+plugin-engine = { path = "../kernel/crates/plugin-engine" }
+
 [patch."https://github.com/handl-lang/platform"]
 handl-kit-arrow-lower = { path = "../platform/crates/handl-kit-arrow-lower" }
-handl-language = { path = "../platform/crates/handl-language" }
 handl-plugin-compile = { path = "../platform/crates/plugin-compile" }
 handl-plugin-engine-lex-pattern = { path = "../platform/crates/plugin-engine-lex-pattern" }
 handl-plugin-engine-parse = { path = "../platform/crates/plugin-engine-parse" }
 handl-plugin-engine-parse-pratt = { path = "../platform/crates/plugin-engine-parse-pratt" }
-plugin-engine = { path = "../platform/crates/plugin-engine" }
-
 [profile.dev]
 opt-level = 1
