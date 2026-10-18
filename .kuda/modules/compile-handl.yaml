@@ -1,0 +1,308 @@
+name: compile-handl
+path: modules/compile-handl/tests/roundtrip.rs
+purpose: compile-handl
+api:
+- name: canonical_lang
+  kind: function
+  file: modules/compile-handl/tests/roundtrip.rs
+  line: 25
+  module: compile-handl
+- name: parse_canonical
+  kind: function
+  file: modules/compile-handl/tests/roundtrip.rs
+  line: 29
+  module: compile-handl
+- name: lower_src
+  kind: function
+  file: modules/compile-handl/tests/roundtrip.rs
+  line: 36
+  module: compile-handl
+- name: lower_file
+  kind: function
+  file: modules/compile-handl/tests/roundtrip.rs
+  line: 42
+  module: compile-handl
+- name: playground
+  kind: function
+  file: modules/compile-handl/tests/roundtrip.rs
+  line: 49
+  module: compile-handl
+- name: assert_roundtrip
+  kind: function
+  file: modules/compile-handl/tests/roundtrip.rs
+  line: 58
+  module: compile-handl
+- name: roundtrip_composition_hughes
+  kind: function
+  file: modules/compile-handl/tests/roundtrip.rs
+  line: 69
+  module: compile-handl
+- name: roundtrip_composition_emidio
+  kind: function
+  file: modules/compile-handl/tests/roundtrip.rs
+  line: 74
+  module: compile-handl
+- name: HandlOutput
+  kind: type
+  file: modules/compile-handl/src/output.rs
+  line: 9
+  module: compile-handl
+- name: new
+  kind: function
+  file: modules/compile-handl/src/output.rs
+  line: 16
+  module: compile-handl
+- name: target
+  kind: function
+  file: modules/compile-handl/src/output.rs
+  line: 25
+  module: compile-handl
+- name: artifacts
+  kind: function
+  file: modules/compile-handl/src/output.rs
+  line: 29
+  module: compile-handl
+- name: stream
+  kind: function
+  file: modules/compile-handl/src/output.rs
+  line: 33
+  module: compile-handl
+- name: HandlCompiler
+  kind: type
+  file: modules/compile-handl/src/compiler.rs
+  line: 11
+  module: compile-handl
+- name: compile
+  kind: function
+  file: modules/compile-handl/src/compiler.rs
+  line: 14
+  module: compile-handl
+- name: target
+  kind: function
+  file: modules/compile-handl/src/compiler.rs
+  line: 32
+  module: compile-handl
+- name: HughesEmitter
+  kind: type
+  file: modules/compile-handl/src/emit.rs
+  line: 7
+  module: compile-handl
+- name: emit
+  kind: function
+  file: modules/compile-handl/src/emit.rs
+  line: 18
+  module: compile-handl
+- name: emit_arrow
+  kind: function
+  file: modules/compile-handl/src/emit.rs
+  line: 30
+  module: compile-handl
+- name: emit_quoted_arrow
+  kind: function
+  file: modules/compile-handl/src/emit.rs
+  line: 71
+  module: compile-handl
+- name: emit_expr
+  kind: function
+  file: modules/compile-handl/src/emit.rs
+  line: 78
+  module: compile-handl
+- name: needed_count
+  kind: function
+  file: modules/compile-handl/src/emit.rs
+  line: 180
+  module: compile-handl
+- name: quoted_term
+  kind: function
+  file: modules/compile-handl/src/emit.rs
+  line: 215
+  module: compile-handl
+- name: param_names
+  kind: function
+  file: modules/compile-handl/src/emit.rs
+  line: 220
+  module: compile-handl
+- name: pattern
+  kind: function
+  file: modules/compile-handl/src/emit.rs
+  line: 238
+  module: compile-handl
+- name: value_to_string
+  kind: function
+  file: modules/compile-handl/src/emit.rs
+  line: 246
+  module: compile-handl
+- name: is_current_param_ref
+  kind: function
+  file: modules/compile-handl/src/emit.rs
+  line: 256
+  module: compile-handl
+- name: HandlConfig
+  kind: type
+  file: modules/compile-handl/src/config.rs
+  line: 9
+  module: compile-handl
+- name: new
+  kind: function
+  file: modules/compile-handl/src/config.rs
+  line: 16
+  module: compile-handl
+- name: as_any
+  kind: function
+  file: modules/compile-handl/src/config.rs
+  line: 22
+  module: compile-handl
+- name: target
+  kind: function
+  file: modules/compile-handl/src/config.rs
+  line: 26
+  module: compile-handl
+- name: compiler
+  kind: module
+  file: modules/compile-handl/src/lib.rs
+  line: 6
+  module: compile-handl
+- name: config
+  kind: module
+  file: modules/compile-handl/src/lib.rs
+  line: 7
+  module: compile-handl
+- name: emit
+  kind: module
+  file: modules/compile-handl/src/lib.rs
+  line: 8
+  module: compile-handl
+- name: output
+  kind: module
+  file: modules/compile-handl/src/lib.rs
+  line: 9
+  module: compile-handl
+deps:
+- handl_kit_arrow_lower
+- handl_kit_data_canonical
+- handl_language
+- handl_plugin_compile_handl
+- handl_plugin_engine_lex_pattern
+- handl_plugin_engine_parse
+- handl_plugin_engine_parse_pratt
+- handl_plugin_compile
+- handl_plugin_compile
+- handl_language
+- handl_plugin_compile
+- compiler
+- config
+- emit
+- output
+notes: ''
+verify:
+- modules/compile-handl/tests/roundtrip.rs
+- modules/compile-handl/tests/roundtrip.rs
+- modules/compile-handl/tests/roundtrip.rs
+- modules/compile-handl/tests/roundtrip.rs
+- modules/compile-handl/tests/roundtrip.rs
+- modules/compile-handl/tests/roundtrip.rs
+- modules/compile-handl/tests/roundtrip.rs
+- modules/compile-handl/tests/roundtrip.rs
+- modules/compile-handl/src/output.rs
+- modules/compile-handl/src/output.rs
+- modules/compile-handl/src/output.rs
+- modules/compile-handl/src/output.rs
+- modules/compile-handl/src/output.rs
+- modules/compile-handl/src/compiler.rs
+- modules/compile-handl/src/compiler.rs
+- modules/compile-handl/src/compiler.rs
+- modules/compile-handl/src/emit.rs
+- modules/compile-handl/src/emit.rs
+- modules/compile-handl/src/emit.rs
+- modules/compile-handl/src/emit.rs
+- modules/compile-handl/src/emit.rs
+- modules/compile-handl/src/emit.rs
+- modules/compile-handl/src/emit.rs
+- modules/compile-handl/src/emit.rs
+- modules/compile-handl/src/emit.rs
+- modules/compile-handl/src/emit.rs
+- modules/compile-handl/src/emit.rs
+- modules/compile-handl/src/config.rs
+- modules/compile-handl/src/config.rs
+- modules/compile-handl/src/config.rs
+- modules/compile-handl/src/config.rs
+- modules/compile-handl/src/lib.rs
+- modules/compile-handl/src/lib.rs
+- modules/compile-handl/src/lib.rs
+- modules/compile-handl/src/lib.rs
+provenance:
+  files:
+  - modules/compile-handl/tests/roundtrip.rs
+  - modules/compile-handl/tests/roundtrip.rs
+  - modules/compile-handl/tests/roundtrip.rs
+  - modules/compile-handl/tests/roundtrip.rs
+  - modules/compile-handl/tests/roundtrip.rs
+  - modules/compile-handl/tests/roundtrip.rs
+  - modules/compile-handl/tests/roundtrip.rs
+  - modules/compile-handl/tests/roundtrip.rs
+  - modules/compile-handl/src/output.rs
+  - modules/compile-handl/src/output.rs
+  - modules/compile-handl/src/output.rs
+  - modules/compile-handl/src/output.rs
+  - modules/compile-handl/src/output.rs
+  - modules/compile-handl/src/compiler.rs
+  - modules/compile-handl/src/compiler.rs
+  - modules/compile-handl/src/compiler.rs
+  - modules/compile-handl/src/emit.rs
+  - modules/compile-handl/src/emit.rs
+  - modules/compile-handl/src/emit.rs
+  - modules/compile-handl/src/emit.rs
+  - modules/compile-handl/src/emit.rs
+  - modules/compile-handl/src/emit.rs
+  - modules/compile-handl/src/emit.rs
+  - modules/compile-handl/src/emit.rs
+  - modules/compile-handl/src/emit.rs
+  - modules/compile-handl/src/emit.rs
+  - modules/compile-handl/src/emit.rs
+  - modules/compile-handl/src/config.rs
+  - modules/compile-handl/src/config.rs
+  - modules/compile-handl/src/config.rs
+  - modules/compile-handl/src/config.rs
+  - modules/compile-handl/src/lib.rs
+  - modules/compile-handl/src/lib.rs
+  - modules/compile-handl/src/lib.rs
+  - modules/compile-handl/src/lib.rs
+  hashes:
+  - e78b5be246dd34700f1cee6968925da658a788fb
+  - e78b5be246dd34700f1cee6968925da658a788fb
+  - e78b5be246dd34700f1cee6968925da658a788fb
+  - e78b5be246dd34700f1cee6968925da658a788fb
+  - e78b5be246dd34700f1cee6968925da658a788fb
+  - e78b5be246dd34700f1cee6968925da658a788fb
+  - e78b5be246dd34700f1cee6968925da658a788fb
+  - e78b5be246dd34700f1cee6968925da658a788fb
+  - a9fc80568b28a1933ad0016c4d7cad2b737f8594
+  - a9fc80568b28a1933ad0016c4d7cad2b737f8594
+  - a9fc80568b28a1933ad0016c4d7cad2b737f8594
+  - a9fc80568b28a1933ad0016c4d7cad2b737f8594
+  - a9fc80568b28a1933ad0016c4d7cad2b737f8594
+  - bbf9b8b2b6ef954faab96daf1657c48170d4743a
+  - bbf9b8b2b6ef954faab96daf1657c48170d4743a
+  - bbf9b8b2b6ef954faab96daf1657c48170d4743a
+  - 0ec8fed0db87150dff1769d9b5ff21d689ae8ae9
+  - 0ec8fed0db87150dff1769d9b5ff21d689ae8ae9
+  - 0ec8fed0db87150dff1769d9b5ff21d689ae8ae9
+  - 0ec8fed0db87150dff1769d9b5ff21d689ae8ae9
+  - 0ec8fed0db87150dff1769d9b5ff21d689ae8ae9
+  - 0ec8fed0db87150dff1769d9b5ff21d689ae8ae9
+  - 0ec8fed0db87150dff1769d9b5ff21d689ae8ae9
+  - 0ec8fed0db87150dff1769d9b5ff21d689ae8ae9
+  - 0ec8fed0db87150dff1769d9b5ff21d689ae8ae9
+  - 0ec8fed0db87150dff1769d9b5ff21d689ae8ae9
+  - 0ec8fed0db87150dff1769d9b5ff21d689ae8ae9
+  - ff41c7172760e2916bbd64cd0584b9cca22b8e66
+  - ff41c7172760e2916bbd64cd0584b9cca22b8e66
+  - ff41c7172760e2916bbd64cd0584b9cca22b8e66
+  - ff41c7172760e2916bbd64cd0584b9cca22b8e66
+  - 2408219c03f12cec1634b603c9eadeb9e636685d
+  - 2408219c03f12cec1634b603c9eadeb9e636685d
+  - 2408219c03f12cec1634b603c9eadeb9e636685d
+  - 2408219c03f12cec1634b603c9eadeb9e636685d
+  commit_sha: c8103ed13963593b38eb375e0a501f6ae362feb5
+  generated_at: '1792281089'
+  generator: kuda-template/0.1.0
