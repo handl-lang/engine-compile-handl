@@ -30,8 +30,8 @@ hnl-engine-parse-pratt = { path = "../engine-parse-pratt" }
 [patch."https://github.com/handl-lang/kernel"]
 handl-language = { path = "../kernel/crates/handl-language" }
 
-[patch."https://github.com/handl-lang/lang"]
-handl-kit-data-canonical = { path = "../lang/crates/handl-kit-data-canonical" }
+[patch."https://github.com/handl-lang/kit-data-canonical"]
+handl-kit-data-canonical = { path = "../kit-data-canonical/crates/handl-kit-data-canonical" }
 
 [patch."https://github.com/handl-lang/host"]
 handl-kit-arrow-lower = { path = "../host/crates/handl-kit-arrow-lower" }
