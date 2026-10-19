@@ -15,7 +15,7 @@
 use std::path::{Path, PathBuf};
 
 use handl_kit_arrow_lower::lower_ast;
-use handl_kit_data_canonical::language_from_yaml;
+use handl_kit_data_prelude::language_from_yaml;
 use handl_language::{Ast, AstRef, Language, Term};
 use handl_plugin_compile_handl::HughesEmitter;
 use hnl_engine_lex_pattern::lex;
