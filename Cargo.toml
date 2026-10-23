@@ -29,6 +29,7 @@ hnl-engine-parse-pratt = { path = "../engine-parse-pratt" }
 
 [patch."https://github.com/handl-lang/kernel"]
 handl-language = { path = "../kernel/crates/handl-language" }
+handl-value = { path = "../kernel/crates/handl-value" }
 
 [patch."https://github.com/handl-lang/kit-data-prelude"]
 handl-kit-data-prelude = { path = "../kit-data-prelude/crates/handl-kit-data-prelude" }

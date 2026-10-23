@@ -88,7 +88,11 @@ impl HughesEmitter {
                 name, args, lit, ..
             } => match name.as_str() {
                 "id" => params.first().cloned().unwrap_or_else(|| "id".to_string()),
-                "proj_child" => match lit.as_ref().and_then(Value::as_u64) {
+                // `elem` is the term-level input projection (the lowerer
+                // renamed `proj_child`'s projection meaning to `elem` —
+                // `proj_child` remains the scheme placeholder). `lit` is
+                // the flat input index.
+                "proj_child" | "elem" => match lit.as_ref().and_then(Value::as_u64) {
                     Some(n) if (n as usize) < params.len() => params[n as usize].clone(),
                     Some(n) => format!(".{}", n),
                     None => ".proj".to_string(),
@@ -186,9 +190,13 @@ fn needed_count(term: &Term) -> usize {
             if name == "id" {
                 return 1;
             }
-            if name == "proj_child" {
+            if name == "proj_child" || name == "elem" {
                 if let Some(n) = lit.as_ref().and_then(Value::as_u64) {
-                    return n as usize + 1;
+                    // A bare `elem k` projects component `k` of the input
+                    // tuple — emitting it as a parameter reference needs at
+                    // least a 2-ary lambda: under a single param the name
+                    // lowers to `id` (the whole input), not `elem 0`.
+                    return (n as usize + 1).max(2);
                 }
                 return 0;
             }
@@ -261,7 +269,9 @@ fn is_current_param_ref(term: &Term, params: &[String]) -> bool {
         Term::Op { name, args, .. } if name == "id" && args.is_empty() => true,
         Term::Op {
             name, lit: Some(n), ..
-        } if name == "proj_child" => n.as_u64().map(|i| i == 0).unwrap_or(false),
+        } if name == "proj_child" || name == "elem" => {
+            n.as_u64().map(|i| i == 0).unwrap_or(false)
+        }
         _ => false,
     }
 }

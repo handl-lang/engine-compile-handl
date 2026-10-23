@@ -55,14 +55,98 @@ fn playground(name: &str) -> PathBuf {
         .join(name)
 }
 
+/// Post-`d8f1e0b7` canonicalization. `x >>> f` with a *value-class* rhs
+/// (a param, env slot, or projection) now lowers to `Op{flow, [l, r]}` —
+/// the `eval.flow` dispatch — instead of `Seq`; arrow operands keep their
+/// `Arr` quote inside the flow args (evaluated as arrow values at
+/// runtime). Both denote the same sequential composition, so the
+/// structural comparison normalizes `flow` back to `Seq`, unquoting
+/// `Arr`-wrapped operands exactly as the lowerer's `unquote_term` does.
+fn normalize(term: &Term) -> Term {
+    match term {
+        Term::Op { name, args, .. } if name == "flow" && args.len() == 2 => reassoc(Term::seq(
+            unquote(normalize(&args[0])),
+            unquote(normalize(&args[1])),
+        )),
+        Term::Seq { .. } => reassoc(map_children(term)),
+        _ => map_children(term),
+    }
+}
+
+/// Right-reassociate an axis-0 `Seq` chain — `>>>` is associative, so
+/// `Seq{Seq{a,b},c}` and `Seq{a,Seq{b,c}}` are the same composition.
+fn reassoc(term: Term) -> Term {
+    let mut parts = Vec::new();
+    let mut cur = term;
+    while let Term::Seq { axis, fst, snd } = cur {
+        if !axis.is_default_axis() {
+            cur = Term::Seq { axis, fst, snd };
+            break;
+        }
+        parts.push(*fst);
+        cur = *snd;
+    }
+    // `parts` collected left-to-right; `cur` is the rightmost leaf.
+    // Rebuild right-leaning: a >>> (b >>> (c >>> …)).
+    let mut out = cur;
+    for l in parts.into_iter().rev() {
+        out = Term::seq(l, out);
+    }
+    out
+}
+
+/// Unquote an `Arr` whose payload serializes a `Term` (the arrow-value
+/// quote `lower_ast` produces for operand positions).
+fn unquote(term: Term) -> Term {
+    if let Term::Arr { value, .. } = &term {
+        if let Ok(inner) = serde_json::from_value::<Term>(value.clone()) {
+            return normalize(&inner);
+        }
+    }
+    term
+}
+
+/// Recursively normalize a term's immediate subterms.
+fn map_children(term: &Term) -> Term {
+    match term {
+        Term::Seq { axis, fst, snd } => Term::Seq {
+            axis: axis.clone(),
+            fst: Box::new(normalize(fst)),
+            snd: Box::new(normalize(snd)),
+        },
+        Term::Op {
+            dim,
+            name,
+            args,
+            source,
+            lit,
+        } => Term::Op {
+            dim: dim.clone(),
+            name: name.clone(),
+            args: args.iter().map(normalize).collect(),
+            source: source.clone(),
+            lit: lit.clone(),
+        },
+        Term::App { callee, args } => Term::App {
+            callee: callee.clone(),
+            args: args.iter().map(normalize).collect(),
+        },
+        _ => term.clone(),
+    }
+}
+
 fn assert_roundtrip(name: &str) {
     let lang = canonical_lang();
     let (original, emitted) = lower_file(&playground(name), &lang);
     eprintln!("emitted:\n{}", emitted);
     eprintln!("original: {:?}", original);
     let parsed = lower_src(&emitted, &lang);
-    eprintln!("parsed: {:?}", parsed);
-    assert_eq!(parsed, original);
+    let (pn, on) = (normalize(&parsed), normalize(&original));
+    if pn != on {
+        std::fs::write("/tmp/normalized-parsed.txt", format!("{pn:#?}")).ok();
+        std::fs::write("/tmp/normalized-orig.txt", format!("{on:#?}")).ok();
+    }
+    assert_eq!(pn, on);
 }
 
 #[test]
