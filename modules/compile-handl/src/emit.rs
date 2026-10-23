@@ -140,7 +140,11 @@ impl HughesEmitter {
                         .zip(args.iter())
                         .map(|(k, v)| format!("{}: {}", k, self.emit_expr(v, params)))
                         .collect();
-                    format!("{{ {} }}", fields.join(", "))
+                    // Always parenthesize: a leading `{` in lambda-body
+                    // position (`ps ~> { … }`) parses as a block, not a
+                    // record literal, so the `record` op would round-trip
+                    // to block-evaluated labels instead of field_accesses.
+                    format!("({{ {} }})", fields.join(", "))
                 }
                 "field_access" if args.len() == 1 => {
                     let idx = match lit.as_ref() {
