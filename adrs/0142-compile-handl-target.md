@@ -1,3 +1,10 @@
+---
+title: '`compile-handl` target'
+type: adr
+date: 2026-10-16
+status: accepted
+---
+
 # ADR-0142: `compile-handl` target
 
 ## Context
