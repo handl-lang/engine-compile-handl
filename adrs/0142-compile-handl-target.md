@@ -3,6 +3,7 @@ title: '`compile-handl` target'
 type: adr
 date: 2026-10-16
 status: accepted
+status_note: Accepted — extracted in ADR-0128 Phase 7.
 ---
 
 # ADR-0142: `compile-handl` target
@@ -36,7 +37,3 @@ corpus is the target's conformance input, not decoration.
   together.
 - A surface-syntax change (ADR-0074/0084) is now a multi-repo change across
   `platform` (grammar data) and `handl` (the compiler) plus a rev bump.
-
-## Status
-
-Accepted — extracted in ADR-0128 Phase 7.
