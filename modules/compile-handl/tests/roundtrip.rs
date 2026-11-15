@@ -120,12 +120,14 @@ fn map_children(term: &Term) -> Term {
             args,
             source,
             lit,
+            attrs,
         } => Term::Op {
             dim: dim.clone(),
             name: name.clone(),
             args: args.iter().map(normalize).collect(),
             source: source.clone(),
             lit: lit.clone(),
+            attrs: attrs.clone(),
         },
         Term::App { callee, args } => Term::App {
             callee: callee.clone(),
