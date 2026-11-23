@@ -18,9 +18,9 @@ use handl_kit_arrow_lower::lower_ast;
 use handl_kit_data_prelude::language_from_yaml;
 use handl_language::{Ast, AstRef, Language, Term};
 use handl_plugin_compile_handl::HughesEmitter;
-use hnl_engine_lex_pattern::lex;
-use hnl_engine_parse::{ParserEngine, ParserRequest};
-use hnl_engine_parse_pratt::PrattEngine;
+use hnl_tool_lex_pattern::lex;
+use hnl_tool_parse::{ParserEngine, ParserRequest};
+use hnl_tool_parse_pratt::PrattEngine;
 
 fn canonical_lang() -> Language {
     language_from_yaml().expect("canonical language should assemble")

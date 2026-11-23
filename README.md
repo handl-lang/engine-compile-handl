@@ -1,7 +1,7 @@
-# engine-compile-handl
+# tool-compile-handl
 
 Handl-to-Handl compiler — emits the Hughes arrow dialect of Handl itself.
-Part of the `engine-compile-*` compiler-backend family: consumes Handl `Term`
+Part of the `tool-compile-*` compiler-backend family: consumes Handl `Term`
 arrow terms and lowers them back to canonical Handl source.
 
 The crate lives in `modules/compile-handl` inside this workspace; runnable
