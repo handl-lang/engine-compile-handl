@@ -14,7 +14,7 @@ handl-plugin-compile = { git = "https://github.com/handl-lang/host", branch = "m
 handl-language = { git = "https://github.com/handl-lang/kernel", branch = "main" }
 handl-kit-arrow-lower = { git = "https://github.com/handl-lang/host", branch = "main" }
 serde_json = "1"
-hnl-engine-codegen = { path = "../../../engine-codegen", features = ["handl-term"] }
+hnl-engine-codegen = { git = "https://github.com/handl-lang/engine-codegen", branch = "main", features = ["handl-term"] }
 
 [dev-dependencies]
 handl-kit-data-prelude = { git = "https://github.com/handl-lang/host", branch = "main" }

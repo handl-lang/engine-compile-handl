@@ -36,3 +36,6 @@ handl-value = { path = "../kernel/crates/handl-value" }
 handl-kit-arrow-lower = { path = "../host/crates/handl-kit-arrow-lower" }
 handl-kit-data-prelude = { path = "../host/crates/handl-kit-data-prelude" }
 handl-plugin-compile = { path = "../host/crates/plugin-compile" }
+
+[patch."https://github.com/handl-lang/engine-codegen"]
+hnl-engine-codegen = { path = "../engine-codegen" }
