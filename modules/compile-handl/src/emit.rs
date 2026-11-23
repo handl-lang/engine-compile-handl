@@ -273,9 +273,7 @@ fn is_current_param_ref(term: &Term, params: &[String]) -> bool {
         Term::Op { name, args, .. } if name == "id" && args.is_empty() => true,
         Term::Op {
             name, lit: Some(n), ..
-        } if name == "proj_child" || name == "elem" => {
-            n.as_u64().map(|i| i == 0).unwrap_or(false)
-        }
+        } if name == "proj_child" || name == "elem" => n.as_u64().map(|i| i == 0).unwrap_or(false),
         _ => false,
     }
 }

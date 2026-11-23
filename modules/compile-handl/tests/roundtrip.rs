@@ -42,7 +42,7 @@ fn lower_src(src: &str, lang: &Language) -> Term {
 fn lower_file(path: &Path, lang: &Language) -> (Term, String) {
     let src = std::fs::read_to_string(path).expect("read playground file");
     let term = lower_src(&src, lang);
-    let emitted = HughesEmitter::default().emit(&term);
+    let emitted = HughesEmitter.emit(&term);
     (term, emitted)
 }
 
@@ -98,10 +98,10 @@ fn reassoc(term: Term) -> Term {
 /// Unquote an `Arr` whose payload serializes a `Term` (the arrow-value
 /// quote `lower_ast` produces for operand positions).
 fn unquote(term: Term) -> Term {
-    if let Term::Arr { value, .. } = &term {
-        if let Ok(inner) = serde_json::from_value::<Term>(value.clone()) {
-            return normalize(&inner);
-        }
+    if let Term::Arr { value, .. } = &term
+        && let Ok(inner) = serde_json::from_value::<Term>(value.clone())
+    {
+        return normalize(&inner);
     }
     term
 }
