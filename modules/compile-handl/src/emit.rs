@@ -277,3 +277,98 @@ fn is_current_param_ref(term: &Term, params: &[String]) -> bool {
         _ => false,
     }
 }
+
+/// `Term` variant names the Hughes emitter cannot express.
+///
+/// `HughesEmitter` covers `Arr`/`Const`/`Op`/`App`/`Seq` in expression
+/// position; every other variant silently emits the `"<term>"`
+/// placeholder there (`App`/`Seq` additionally degrade in *arrow*
+/// position). The codegen-kernel `Emitter::verify` gate uses this to
+/// decline honestly instead of shipping placeholder text (PL-004 T-092).
+pub fn unsupported_variants(term: &Term) -> Vec<&'static str> {
+    fn variant_name(term: &Term) -> &'static str {
+        match term {
+            Term::Arr { .. } => "Arr",
+            Term::Const { .. } => "Const",
+            Term::Op { .. } => "Op",
+            Term::Seq { .. } => "Seq",
+            Term::First { .. } => "First",
+            Term::Choice { .. } => "Choice",
+            Term::Loop { .. } => "Loop",
+            Term::App { .. } => "App",
+            Term::Iter { .. } => "Iter",
+            Term::Child { .. } => "Child",
+            Term::Handle { .. } => "Handle",
+            Term::Rewrite { .. } => "Rewrite",
+            Term::Src { .. } => "Src",
+            Term::Tgt { .. } => "Tgt",
+            Term::RecordProj { .. } => "RecordProj",
+            Term::RecordWith { .. } => "RecordWith",
+            Term::Tag { .. } => "Tag",
+            Term::Cobind { .. } => "Cobind",
+            Term::Opaque { .. } => "Opaque",
+        }
+    }
+
+    /// Every `Term`-typed child slot, for the recursive walk. `dim` /
+    /// `axis` slots are included — they are ordinary terms.
+    fn child_terms(term: &Term) -> Vec<&Term> {
+        // `&Box<Term>` fields coerce to `&Term` at the call sites.
+        fn unbox(t: &Term) -> &Term {
+            t
+        }
+        match term {
+            Term::Arr { dim, .. } => vec![unbox(dim)],
+            Term::Op { dim, args, .. } => {
+                let mut v = vec![unbox(dim)];
+                v.extend(args.iter());
+                v
+            }
+            Term::Seq { axis, fst, snd } => vec![unbox(axis), unbox(fst), unbox(snd)],
+            Term::First { inner } => vec![unbox(inner)],
+            Term::Choice { l, r } => vec![unbox(l), unbox(r)],
+            Term::Loop { body } => vec![unbox(body)],
+            Term::App { callee, args } => {
+                let mut v = vec![unbox(callee)];
+                v.extend(args.iter());
+                v
+            }
+            Term::Iter {
+                fuel,
+                predicate,
+                step,
+                initial,
+            } => vec![unbox(fuel), unbox(predicate), unbox(step), unbox(initial)],
+            Term::Handle { body, impl_, .. } => vec![unbox(body), unbox(impl_)],
+            Term::Rewrite { source, target, .. } => vec![unbox(source), unbox(target)],
+            Term::Src { cell } | Term::Tgt { cell } => vec![unbox(cell)],
+            Term::RecordProj { record, .. } => vec![unbox(record)],
+            Term::RecordWith { record, value, .. } => vec![unbox(record), unbox(value)],
+            Term::Tag { value, .. } => vec![unbox(value)],
+            Term::Cobind { grade, body } => vec![unbox(grade), unbox(body)],
+            Term::Const { .. } | Term::Child { .. } | Term::Opaque { .. } => Vec::new(),
+        }
+    }
+
+    fn walk(term: &Term, out: &mut Vec<&'static str>) {
+        if !matches!(
+            term,
+            Term::Arr { .. }
+                | Term::Const { .. }
+                | Term::Op { .. }
+                | Term::App { .. }
+                | Term::Seq { .. }
+        ) {
+            out.push(variant_name(term));
+        }
+        for child in child_terms(term) {
+            walk(child, out);
+        }
+    }
+
+    let mut out = Vec::new();
+    walk(term, &mut out);
+    out.sort_unstable();
+    out.dedup();
+    out
+}
